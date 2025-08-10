@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NASA APOD Viewer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>NASA Astronomy Picture of the Day</h1>
+        <p class="subtitle">Explore the cosmos, one day at a time</p>
+    </header>
+
+    <!-- Mode Toggle -->
+    <section class="mode-toggle">
+        <label class="switch">
+            <input type="checkbox" id="modeSwitch">
+            <span class="slider"></span>
+        </label>
+        <span id="modeLabel">Embedded View</span>
+    </section>
+
+    <!-- Explanation Placeholder -->
+    <section class="explanation">
+        <h2>How It Works</h2>
+        <p>
+            This project uses NASA's Astronomy Picture of the Day (APOD) API to fetch daily space images and descriptions.
+            Depending on your selection, the picture can be embedded directly here or emailed to you. 
+            <em>(Detailed explanation of backend logic will be added soon.)</em>
+        </p>
+    </section>
+
+    <!-- Email Opt-in -->
+    <section class="email-optin">
+        <h2>Get Daily APOD Emails</h2>
+        <form id="emailForm">
+            <input type="email" placeholder="Enter your email" required>
+            <button type="submit">Subscribe</button>
+        </form>
+        <small class="disclaimer">
+            ⚠ Subscribing may cause daily emails to appear in your primary inbox. Proceed if you’re okay with that.
+        </small>
+        <br>
+        <button class="disabled-btn" disabled>Unsubscribe (Coming Soon)</button>
+    </section>
+
+    <!-- Specific Date APOD -->
+    <section class="date-selector">
+        <h2>View APOD for a Specific Date</h2>
+        <form id="dateForm">
+            <label for="apodDate">Choose a date (e.g., your birthday):</label>
+            <input type="date" id="apodDate" max="">
+            <button type="submit">View</button>
+        </form>
+    </section>
+
+    <!-- Embedded Result (Static Placeholder for Now) -->
+    <section id="apodContainer" class="apod-container">
+        <h2>Today's APOD</h2>
+        <div class="apod-placeholder">
+            <img src="https://apod.nasa.gov/apod/image/2408/MilkyWayCore_APOD.jpg" alt="Sample APOD">
+            <p><strong>Sample Title:</strong> Milky Way Core</p>
+            <p>This is a placeholder APOD image. In the final version, this will be replaced with live data from NASA's API.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>Future Ideas: Chatbot for APOD Q&A, text-to-speech descriptions, and more!</p>
+    </footer>
+
+    <script>
+        // Set max date to today for date picker
+        document.getElementById("apodDate").max = new Date().toISOString().split("T")[0];
+
+        // Toggle label change
+        const modeSwitch = document.getElementById("modeSwitch");
+        const modeLabel = document.getElementById("modeLabel");
+        modeSwitch.addEventListener("change", () => {
+            modeLabel.textContent = modeSwitch.checked ? "Email View" : "Embedded View";
+        });
+    </script>
+</body>
+</html>
